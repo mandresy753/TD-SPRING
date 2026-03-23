@@ -10,18 +10,24 @@ import java.util.List;
 
 @RestController
 public class StudentsController {
-
     private List<Students> listStudents = new ArrayList<>();
+
     @PostMapping("/students")
     public ResponseEntity<?> addStudent(@RequestBody List<Students> students) {
-        listStudents.addAll(students);
-        return ResponseEntity.status(HttpStatus.CREATED).body(listStudents);
+        try {
+
+            listStudents.addAll(students);
+
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(listStudents);
+
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erreur lors du traitement du POST : " + e.getMessage());
+        }
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handlePostError(Exception e) {
-        return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Erreur POST invalide : " + e.getMessage());
-    }
+
 }
