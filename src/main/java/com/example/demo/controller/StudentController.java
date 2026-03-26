@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Student;
+import com.example.demo.exception.BadRequestException;
 import com.example.demo.service.StudentService;
 import com.example.demo.validator.StudentValidator;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class StudentController {
 
             return ResponseEntity.ok(service.saveAll(newStudents));
 
-        } catch (IllegalArgumentException e) {
+        } catch (BadRequestException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
