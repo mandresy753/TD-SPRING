@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Student;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class StudentController {
@@ -14,7 +16,7 @@ public class StudentController {
     @PostMapping("/students")
     public ResponseEntity<?> createStudents(@RequestBody List<Student> newStudents) {
         for (Student newStudent : newStudents) {
-            if (newStudent.reference() == null || newStudent.reference().isBlank()) {
+            if (newStudent.getReference() == null || newStudent.getReference().isBlank()) {
                 return ResponseEntity
                         .status(HttpStatus.BAD_REQUEST)
                         .header("Content-Type", "text/plain")

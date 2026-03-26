@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student {
+    private String reference;
     private String firstName;
     private String lastName;
-    private int age;
-    private String reference;
+    private Integer age;
 }
