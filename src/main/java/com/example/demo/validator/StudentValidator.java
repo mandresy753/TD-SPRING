@@ -1,21 +1,19 @@
 package com.example.demo.validator;
-
 import com.example.demo.entity.Student;
-import org.apache.coyote.BadRequestException;
 
 public class StudentValidator {
-    public void referenceValidate(Student newStudent) throws BadRequestException {
+    public void validate(Student newStudent){
         if (newStudent.getReference() == null || newStudent.getReference().isBlank()){
-            throw new BadRequestException("Reference is required");
+            throw new IllegalArgumentException("Reference is required");
         }
         if (newStudent.getFirstName() == null || newStudent.getFirstName().isBlank()){
-            throw new BadRequestException("FirstName is required");
+            throw new IllegalArgumentException("FirstName is required");
         }
         if (newStudent.getLastName() == null || newStudent.getLastName().isBlank()){
-            throw new BadRequestException("LastName is required");
+            throw new IllegalArgumentException("LastName is required");
         }
         if (newStudent.getAge() == null){
-            throw new BadRequestException("Age is required");
+            throw new IllegalArgumentException("Age is required");
         }
     }
 
